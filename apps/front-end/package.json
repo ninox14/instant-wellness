@@ -37,6 +37,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
+    "nitro": "npm:nitro-nightly@latest",
     "@tanstack/devtools-vite": "^0.3.11",
     "@tanstack/eslint-config": "^0.3.0",
     "@testing-library/dom": "^10.4.0",
