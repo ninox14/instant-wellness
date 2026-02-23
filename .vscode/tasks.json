@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "watch:all",
+      "dependsOn": ["watch:back-end", "watch:front-end", "watch:common"],
+      "problemMatcher": []
+    },
+    {
+      "label": "watch:back-end",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/back-end"
+      },
+      "command": "pnpm dev",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "clear": true,
+        "group": "shared"
+      },
+      "hide": true
+    },
+    {
+      "label": "watch:front-end",
+      "type": "shell",
+      "command": "pnpm dev",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/front-end"
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "clear": true,
+        "group": "shared"
+      },
+      "hide": true
+    },
+    {
+      "label": "watch:common",
+      "type": "shell",
+      "command": "pnpm dev",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/common"
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "clear": true,
+        "group": "shared"
+      },
+      "hide": true
+    }
+  ]
+}
