@@ -1,5 +1,5 @@
 {
-  "projectName": "front-end",
+  "projectName": "instant-welness-fe",
   "mode": "file-router",
   "typescript": true,
   "packageManager": "pnpm",
@@ -10,6 +10,6 @@
   "git": false,
   "routerOnly": false,
   "version": 1,
-  "framework": "react-cra",
+  "framework": "react",
   "chosenAddOns": ["eslint", "shadcn", "t3env", "better-auth", "tanstack-query"]
 }
