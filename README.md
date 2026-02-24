@@ -18,7 +18,8 @@
 ## Pre-requisites
 
 - **Docker** – [Install Docker](https://www.docker.com/get-started/)
-  > Docker is required before proceeding with any other steps. Installation can very from system to system.
+  > Docker is required for ease of use before proceeding with any other steps. Installation can very from system to system.
+  > Alternatively you can use locally installed instance/server of postgresql.
 
 # Setup Instructions
 
