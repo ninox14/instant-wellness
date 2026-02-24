@@ -1,8 +1,23 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module.js';
+import { AppModule } from './modules/app/app.module.js';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { apiReference } from '@scalar/nestjs-api-reference';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
-}
+const bootstrap = async () => {
+  const app = await NestFactory.create(AppModule, {
+    bodyParser: false,
+  });
+
+  const config = new DocumentBuilder()
+    .setTitle('API Docs')
+    .setVersion('0.0.1')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+
+  app.use('/api/docs', apiReference({ content: document, theme: 'deepSpace' }));
+
+  await app.listen(process.env.PORT || 3000);
+};
+
 bootstrap().catch(console.error);
