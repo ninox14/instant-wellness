@@ -7,7 +7,7 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarMenuItem,
-} from '@/components/ui/sidebar'; // your shadcn/ui sidebar components
+} from '@/components/ui/sidebar';
 import { FileUp, LayoutDashboard, TableOfContents } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
