@@ -10,17 +10,14 @@ config({ path: getConfigPath(), quiet: true });
 export type DrizzleClient = ReturnType<typeof drizzle<typeof schema>>;
 export const DRIZZLE: InjectionToken<DrizzleClient> = Symbol('DRIZZLE');
 
-@Module({
-  providers: [
-    {
-      provide: DRIZZLE,
-      useFactory: () => {
-        const pool = new Pool({ connectionString: process.env.DATABASE_URL! });
+export const createDrizzleInstance = () => {
+  const pool = new Pool({ connectionString: process.env.DATABASE_URL! });
 
-        return drizzle(pool, { casing: 'snake_case', schema });
-      },
-    },
-  ],
+  return drizzle(pool, { casing: 'snake_case', schema });
+};
+
+@Module({
+  providers: [{ provide: DRIZZLE, useFactory: createDrizzleInstance }],
   exports: [DRIZZLE],
 })
 export class DatabaseModule {}
