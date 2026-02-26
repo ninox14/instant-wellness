@@ -7,8 +7,30 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import DragDropFileInput from './components/CsvDropzone';
+import { http } from '@/lib/api';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 export default function DashboardImport() {
+  const [loading, setLoading] = useState(false);
+  async function handleSubmit(file: File, clearFile: () => void) {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const response = await http.postForm('orders/import', formData);
+
+      clearFile();
+      // TODO: redirect or show prettier toast ?
+      console.log(response);
+      toast.success('Uploaded successfully');
+    } catch (err) {
+      toast.error('Something went wrong');
+      console.error(err);
+    }
+    setLoading(false);
+  }
+
   return (
     <div className="flex min-h-screen w-full items-center justify-center font-sans dark:bg-black">
       <div className="flex min-h-screen p-6 w-full max-w-4xl flex-col items-center bg-white dark:bg-black sm:items-start">
@@ -30,7 +52,7 @@ export default function DashboardImport() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-0">
-                <DragDropFileInput onSubmit={(file) => console.log(file)} />
+                <DragDropFileInput loading={loading} onSubmit={handleSubmit} />
               </CardContent>
             </Card>
             <Card>

@@ -7,10 +7,14 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { FileUp, X } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Spinner } from '@/components/ui/spinner';
 
-type Props = { onSubmit: (file: File) => void };
+type Props = {
+  onSubmit: (file: File, clearFile: () => void) => void;
+  loading: boolean;
+};
 
-export default function DragDropFileInput({ onSubmit }: Props) {
+export default function DragDropFileInput({ onSubmit, loading }: Props) {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,6 +34,12 @@ export default function DragDropFileInput({ onSubmit }: Props) {
     },
     [],
   );
+  function handleSubmit() {
+    if (file)
+      onSubmit(file, () => {
+        setFile(null);
+      });
+  }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -86,6 +96,7 @@ export default function DragDropFileInput({ onSubmit }: Props) {
                     variant="destructive"
                     size="icon"
                     onClick={() => setFile(null)}
+                    disabled={loading}
                   >
                     <X />
                   </Button>
@@ -95,13 +106,12 @@ export default function DragDropFileInput({ onSubmit }: Props) {
           )}
 
           <Button
-            className="mt-4 block mx-auto"
-            disabled={!file}
-            onClick={() => {
-              if (file) onSubmit(file);
-            }}
+            className="mt-4 flex mx-auto"
+            disabled={!file || loading}
+            onClick={handleSubmit}
           >
             Upload
+            {loading && <Spinner data-icon="inline-end" />}
           </Button>
         </div>
       </CardContent>
