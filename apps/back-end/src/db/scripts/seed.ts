@@ -1,10 +1,11 @@
 import { SQL, sql } from 'drizzle-orm';
-import { createDrizzleInstance, DrizzleClient } from '../index.js';
+import { createDrizzleInstance } from '../index.js';
 import shapefile from 'shapefile';
 import path from 'node:path';
 import { config } from 'dotenv';
 import { getConfigPath } from '../../utils/index.js';
 import { config as configSchema } from '../schema/config.schema.js';
+import { DrizzleClient } from '../constants.js';
 
 config({ path: getConfigPath(), quiet: true });
 

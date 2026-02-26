@@ -3,12 +3,11 @@ import { getConfigPath } from '../utils/index.js';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import * as schema from './schema/index.js';
-import { InjectionToken, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { GeodataRepository, OrderRepository } from './repository/index.js';
+import { DRIZZLE } from './constants.js';
 
 config({ path: getConfigPath(), quiet: true });
-
-export type DrizzleClient = ReturnType<typeof drizzle<typeof schema>>;
-export const DRIZZLE: InjectionToken<DrizzleClient> = Symbol('DRIZZLE');
 
 export const createDrizzleInstance = () => {
   const pool = new Pool({ connectionString: process.env.DATABASE_URL! });
@@ -17,7 +16,11 @@ export const createDrizzleInstance = () => {
 };
 
 @Module({
-  providers: [{ provide: DRIZZLE, useFactory: createDrizzleInstance }],
-  exports: [DRIZZLE],
+  providers: [
+    { provide: DRIZZLE, useFactory: createDrizzleInstance },
+    OrderRepository,
+    GeodataRepository,
+  ],
+  exports: [DRIZZLE, OrderRepository, GeodataRepository],
 })
 export class DatabaseModule {}

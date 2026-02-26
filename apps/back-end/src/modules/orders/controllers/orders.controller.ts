@@ -32,11 +32,11 @@ export class OrdersController {
     return await this.ordersService.processUploadedCsv(csv);
   }
 
-  // @Post()
+  @Post()
   // @ZodResponse({ type: CreateOrderResponseDTO })
-  // public createOrder(@Body() order: CreateOrderRequestDTO) {
-  //   return this.ordersService.createOrder(order);
-  // }
+  public createOrder(@Body() order: CreateOrderRequestDTO) {
+    return this.ordersService.createOrder(order);
+  }
 
   @Get()
   public getOrders() {}
