@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { FileReaderService } from '../../file-reader/services/file-reader.service.js';
 import { GeocodeService } from '../../geocode/services/geocode.service.js';
 import { GetGeodataResult } from '../../geocode/types/index.js';
-import { chunkArray } from '../../../utils/index.js';
+import { chunkArray } from '@/common';
+import {
+  CreateOrderRequestDTO,
+  CreateOrderResponseDTO,
+} from '../dtos/index.js';
 
 @Injectable()
 export class OrdersService {
@@ -55,5 +59,5 @@ export class OrdersService {
     };
   }
 
-  public createOrder() {}
+  public createOrder(order: CreateOrderRequestDTO) {}
 }

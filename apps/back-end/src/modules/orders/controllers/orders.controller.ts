@@ -9,6 +9,11 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes } from '@nestjs/swagger';
 import { OrdersService } from '../services/orders.service.js';
+import {
+  CreateOrderRequestDTO,
+  CreateOrderResponseDTO,
+} from '../dtos/index.js';
+import { ZodResponse } from 'nestjs-zod';
 
 @Controller('orders')
 export class OrdersController {
@@ -27,10 +32,11 @@ export class OrdersController {
     return await this.ordersService.processUploadedCsv(csv);
   }
 
-  @Post()
-  public createOrder() {
-    this.ordersService.createOrder();
-  }
+  // @Post()
+  // @ZodResponse({ type: CreateOrderResponseDTO })
+  // public createOrder(@Body() order: CreateOrderRequestDTO) {
+  //   return this.ordersService.createOrder(order);
+  // }
 
   @Get()
   public getOrders() {}

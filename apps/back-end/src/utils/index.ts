@@ -1,5 +1,6 @@
 import path from 'node:path';
 import fs from 'node:fs';
+
 export function getConfigPath() {
   let configPath: string;
   if (process.env.NODE_ENV === 'prod') {
@@ -27,12 +28,4 @@ export function getConfigPath() {
   } else {
     throw Error('Provide env config ');
   }
-}
-
-export function chunkArray<T>(array: T[], size: number) {
-  const chunkedArray: T[][] = [];
-  for (let i = 0; i < array.length; i += size) {
-    chunkedArray.push(array.slice(i, i + size));
-  }
-  return chunkedArray;
 }

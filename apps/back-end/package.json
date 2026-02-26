@@ -27,6 +27,7 @@
     "drizzle-orm": "^0.45.1",
     "fast-csv": "^5.0.5",
     "multer": "^2.0.2",
+    "nestjs-zod": "^5.1.1",
     "pg": "^8.18.0",
     "pg-native": "^3.5.2",
     "reflect-metadata": "^0.2.2",
