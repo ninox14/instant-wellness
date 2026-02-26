@@ -67,18 +67,18 @@ export class OrdersService {
         special_rate: breakdown.special_rate,
         state_rate: breakdown.state_tax,
         tax_amount: this.taxService.calcTax(
-          subtotal,
+          Number(subtotal),
           taxData.tax_rate_percentage,
         ),
         timestamp: ts.toString(),
         total_amount: this.taxService.combinedTaxAmount(
-          subtotal,
+          Number(subtotal),
           taxData.tax_rate_percentage,
         ),
         city: taxData.city,
         county: taxData.county,
         jurisdictions: taxData.jurisdictions,
-        subtotal,
+        subtotal: Number(subtotal),
       });
     }
 
@@ -134,12 +134,12 @@ export class OrdersService {
       special_rate: breakdown.special_rate,
       state_rate: breakdown.state_tax,
       tax_amount: this.taxService.calcTax(
-        subtotal,
+        Number(subtotal),
         taxData.tax_rate_percentage,
       ),
       timestamp: data.ts.toString(),
       total_amount: this.taxService.combinedTaxAmount(
-        subtotal,
+        Number(subtotal),
         taxData.tax_rate_percentage,
       ),
       city: data.city,
