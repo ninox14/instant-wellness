@@ -1,0 +1,1066 @@
+{
+  "Albany County": {
+    "locality": "Albany",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0181",
+    "mctd_included": false,
+    "original_locality": "Albany",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Allegany County": {
+    "locality": "Allegany",
+    "tax_rate_percentage": 8.5,
+    "reporting_code": "0221",
+    "mctd_included": false,
+    "original_locality": "Allegany",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4.5,
+      "special_rate": 0
+    }
+  },
+  "Broome County": {
+    "locality": "Broome",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0321",
+    "mctd_included": false,
+    "original_locality": "Broome",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Cattaraugus County": {
+    "locality": "Cattaraugus",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0481",
+    "mctd_included": false,
+    "original_locality": "Cattaraugus - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Olean": {
+    "locality": "Olean",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0441",
+    "mctd_included": false,
+    "original_locality": "Olean (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Salamanca": {
+    "locality": "Salamanca",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0431",
+    "mctd_included": false,
+    "original_locality": "Salamanca (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Cayuga County": {
+    "locality": "Cayuga",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0511",
+    "mctd_included": false,
+    "original_locality": "Cayuga - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Auburn": {
+    "locality": "Auburn",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0561",
+    "mctd_included": false,
+    "original_locality": "Auburn (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Chautauqua County": {
+    "locality": "Chautauqua",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0651",
+    "mctd_included": false,
+    "original_locality": "Chautauqua",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Chemung County": {
+    "locality": "Chemung",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0711",
+    "mctd_included": false,
+    "original_locality": "Chemung",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Chenango County": {
+    "locality": "Chenango",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0861",
+    "mctd_included": false,
+    "original_locality": "Chenango - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Norwich": {
+    "locality": "Norwich",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0831",
+    "mctd_included": false,
+    "original_locality": "Norwich (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Clinton County": {
+    "locality": "Clinton",
+    "tax_rate_percentage": 8,
+    "reporting_code": "0921",
+    "mctd_included": false,
+    "original_locality": "Clinton",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Columbia County": {
+    "locality": "Columbia",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1021",
+    "mctd_included": false,
+    "original_locality": "Columbia",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Cortland County": {
+    "locality": "Cortland",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1131",
+    "mctd_included": false,
+    "original_locality": "Cortland",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Delaware County": {
+    "locality": "Delaware",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1221",
+    "mctd_included": false,
+    "original_locality": "Delaware",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Dutchess County": {
+    "locality": "Dutchess",
+    "tax_rate_percentage": 8.125,
+    "reporting_code": "1311",
+    "mctd_included": true,
+    "original_locality": "Dutchess",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 3.75,
+      "special_rate": 0.375
+    }
+  },
+  "Erie County": {
+    "locality": "Erie",
+    "tax_rate_percentage": 8.75,
+    "reporting_code": "1451",
+    "mctd_included": false,
+    "original_locality": "Erie",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4.75,
+      "special_rate": 0
+    }
+  },
+  "Essex County": {
+    "locality": "Essex",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1521",
+    "mctd_included": false,
+    "original_locality": "Essex",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Franklin County": {
+    "locality": "Franklin",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1621",
+    "mctd_included": false,
+    "original_locality": "Franklin",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Fulton County": {
+    "locality": "Fulton",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1791",
+    "mctd_included": false,
+    "original_locality": "Fulton - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Gloversville": {
+    "locality": "Gloversville",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1741",
+    "mctd_included": false,
+    "original_locality": "Gloversville (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Johnstown": {
+    "locality": "Johnstown",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1751",
+    "mctd_included": false,
+    "original_locality": "Johnstown (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Genesee County": {
+    "locality": "Genesee",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1811",
+    "mctd_included": false,
+    "original_locality": "Genesee",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Greene County": {
+    "locality": "Greene",
+    "tax_rate_percentage": 8,
+    "reporting_code": "1911",
+    "mctd_included": false,
+    "original_locality": "Greene",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Hamilton County": {
+    "locality": "Hamilton",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2011",
+    "mctd_included": false,
+    "original_locality": "Hamilton",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Herkimer County": {
+    "locality": "Herkimer",
+    "tax_rate_percentage": 8.25,
+    "reporting_code": "2121",
+    "mctd_included": false,
+    "original_locality": "Herkimer",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4.25,
+      "special_rate": 0
+    }
+  },
+  "Jefferson County": {
+    "locality": "Jefferson",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2221",
+    "mctd_included": false,
+    "original_locality": "Jefferson",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Lewis County": {
+    "locality": "Lewis",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2321",
+    "mctd_included": false,
+    "original_locality": "Lewis",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Livingston County": {
+    "locality": "Livingston",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2411",
+    "mctd_included": false,
+    "original_locality": "Livingston",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Madison County": {
+    "locality": "Madison",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2511",
+    "mctd_included": false,
+    "original_locality": "Madison - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Oneida": {
+    "locality": "Oneida",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2541",
+    "mctd_included": false,
+    "original_locality": "Oneida (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Monroe County": {
+    "locality": "Monroe",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2611",
+    "mctd_included": false,
+    "original_locality": "Monroe",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Montgomery County": {
+    "locality": "Montgomery",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2781",
+    "mctd_included": false,
+    "original_locality": "Montgomery",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Nassau County": {
+    "locality": "Nassau",
+    "tax_rate_percentage": 8.625,
+    "reporting_code": "2811",
+    "mctd_included": true,
+    "original_locality": "Nassau",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4.25,
+      "special_rate": 0.375
+    }
+  },
+  "New York City County": {
+    "locality": "New York City",
+    "tax_rate_percentage": 8.875,
+    "reporting_code": "8081",
+    "mctd_included": true,
+    "original_locality": "New York City",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4.5,
+      "special_rate": 0.375
+    }
+  },
+  "Niagara County": {
+    "locality": "Niagara",
+    "tax_rate_percentage": 8,
+    "reporting_code": "2911",
+    "mctd_included": false,
+    "original_locality": "Niagara",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Oneida County": {
+    "locality": "Oneida",
+    "tax_rate_percentage": 8.75,
+    "reporting_code": "3010",
+    "mctd_included": false,
+    "original_locality": "Oneida - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4.75,
+      "special_rate": 0
+    }
+  },
+  "Rome": {
+    "locality": "Rome",
+    "tax_rate_percentage": 8.75,
+    "reporting_code": "3015",
+    "mctd_included": false,
+    "original_locality": "Rome (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4.75,
+      "special_rate": 0
+    }
+  },
+  "Utica": {
+    "locality": "Utica",
+    "tax_rate_percentage": 8.75,
+    "reporting_code": "3018",
+    "mctd_included": false,
+    "original_locality": "Utica (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4.75,
+      "special_rate": 0
+    }
+  },
+  "Onondaga County": {
+    "locality": "Onondaga",
+    "tax_rate_percentage": 8,
+    "reporting_code": "3121",
+    "mctd_included": false,
+    "original_locality": "Onondaga",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Ontario County": {
+    "locality": "Ontario",
+    "tax_rate_percentage": 7.5,
+    "reporting_code": "3211",
+    "mctd_included": false,
+    "original_locality": "Ontario",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 3.5,
+      "special_rate": 0
+    }
+  },
+  "Orange County": {
+    "locality": "Orange",
+    "tax_rate_percentage": 8.125,
+    "reporting_code": "3321",
+    "mctd_included": true,
+    "original_locality": "Orange",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 3.75,
+      "special_rate": 0.375
+    }
+  },
+  "Orleans County": {
+    "locality": "Orleans",
+    "tax_rate_percentage": 8,
+    "reporting_code": "3481",
+    "mctd_included": false,
+    "original_locality": "Orleans",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Oswego County": {
+    "locality": "Oswego",
+    "tax_rate_percentage": 8,
+    "reporting_code": "3501",
+    "mctd_included": false,
+    "original_locality": "Oswego - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Oswego": {
+    "locality": "Oswego",
+    "tax_rate_percentage": 8,
+    "reporting_code": "3561",
+    "mctd_included": false,
+    "original_locality": "Oswego (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Otsego County": {
+    "locality": "Otsego",
+    "tax_rate_percentage": 8,
+    "reporting_code": "3621",
+    "mctd_included": false,
+    "original_locality": "Otsego",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Putnam County": {
+    "locality": "Putnam",
+    "tax_rate_percentage": 8.375,
+    "reporting_code": "3731",
+    "mctd_included": true,
+    "original_locality": "Putnam",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0.375
+    }
+  },
+  "Rensselaer County": {
+    "locality": "Rensselaer",
+    "tax_rate_percentage": 8,
+    "reporting_code": "3881",
+    "mctd_included": false,
+    "original_locality": "Rensselaer",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Rockland County": {
+    "locality": "Rockland",
+    "tax_rate_percentage": 8.375,
+    "reporting_code": "3921",
+    "mctd_included": true,
+    "original_locality": "Rockland",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0.375
+    }
+  },
+  "St. Lawrence County": {
+    "locality": "St. Lawrence",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4091",
+    "mctd_included": false,
+    "original_locality": "St. Lawrence - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Ogdensburg": {
+    "locality": "Ogdensburg",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4012",
+    "mctd_included": false,
+    "original_locality": "Ogdensburg (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Saratoga County": {
+    "locality": "Saratoga",
+    "tax_rate_percentage": 7,
+    "reporting_code": "4111",
+    "mctd_included": false,
+    "original_locality": "Saratoga - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 3,
+      "special_rate": 0
+    }
+  },
+  "Saratoga Springs": {
+    "locality": "Saratoga Springs",
+    "tax_rate_percentage": 7,
+    "reporting_code": "4131",
+    "mctd_included": false,
+    "original_locality": "Saratoga Springs (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 3,
+      "special_rate": 0
+    }
+  },
+  "Schenectady County": {
+    "locality": "Schenectady",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4241",
+    "mctd_included": false,
+    "original_locality": "Schenectady",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Schoharie County": {
+    "locality": "Schoharie",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4321",
+    "mctd_included": false,
+    "original_locality": "Schoharie",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Schuyler County": {
+    "locality": "Schuyler",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4411",
+    "mctd_included": false,
+    "original_locality": "Schuyler",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Seneca County": {
+    "locality": "Seneca",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4511",
+    "mctd_included": false,
+    "original_locality": "Seneca",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Steuben County": {
+    "locality": "Steuben",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4691",
+    "mctd_included": false,
+    "original_locality": "Steuben",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Suffolk County": {
+    "locality": "Suffolk",
+    "tax_rate_percentage": 8.75,
+    "reporting_code": "4711",
+    "mctd_included": true,
+    "original_locality": "Suffolk",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4.375,
+      "special_rate": 0.375
+    }
+  },
+  "Sullivan County": {
+    "locality": "Sullivan",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4821",
+    "mctd_included": false,
+    "original_locality": "Sullivan",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Tioga County": {
+    "locality": "Tioga",
+    "tax_rate_percentage": 8,
+    "reporting_code": "4921",
+    "mctd_included": false,
+    "original_locality": "Tioga",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Tompkins County": {
+    "locality": "Tompkins",
+    "tax_rate_percentage": 8,
+    "reporting_code": "5081",
+    "mctd_included": false,
+    "original_locality": "Tompkins - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Ithaca": {
+    "locality": "Ithaca",
+    "tax_rate_percentage": 8,
+    "reporting_code": "5021",
+    "mctd_included": false,
+    "original_locality": "Ithaca (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Ulster County": {
+    "locality": "Ulster",
+    "tax_rate_percentage": 8,
+    "reporting_code": "5111",
+    "mctd_included": false,
+    "original_locality": "Ulster",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Warren County": {
+    "locality": "Warren",
+    "tax_rate_percentage": 7,
+    "reporting_code": "5281",
+    "mctd_included": false,
+    "original_locality": "Warren - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 3,
+      "special_rate": 0
+    }
+  },
+  "Glens Falls": {
+    "locality": "Glens Falls",
+    "tax_rate_percentage": 7,
+    "reporting_code": "5211",
+    "mctd_included": false,
+    "original_locality": "Glens Falls (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 3,
+      "special_rate": 0
+    }
+  },
+  "Washington County": {
+    "locality": "Washington",
+    "tax_rate_percentage": 7,
+    "reporting_code": "5311",
+    "mctd_included": false,
+    "original_locality": "Washington",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 3,
+      "special_rate": 0
+    }
+  },
+  "Wayne County": {
+    "locality": "Wayne",
+    "tax_rate_percentage": 8,
+    "reporting_code": "5421",
+    "mctd_included": false,
+    "original_locality": "Wayne",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Westchester County": {
+    "locality": "Westchester",
+    "tax_rate_percentage": 8.375,
+    "reporting_code": "5581",
+    "mctd_included": true,
+    "original_locality": "Westchester - except",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0.375
+    }
+  },
+  "Mount Vernon": {
+    "locality": "Mount Vernon",
+    "tax_rate_percentage": 8.375,
+    "reporting_code": "5521",
+    "mctd_included": true,
+    "original_locality": "Mount Vernon (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0.375
+    }
+  },
+  "New Rochelle": {
+    "locality": "New Rochelle",
+    "tax_rate_percentage": 8.375,
+    "reporting_code": "6861",
+    "mctd_included": true,
+    "original_locality": "New Rochelle (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0.375
+    }
+  },
+  "White Plains": {
+    "locality": "White Plains",
+    "tax_rate_percentage": 8.375,
+    "reporting_code": "6513",
+    "mctd_included": true,
+    "original_locality": "White Plains (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4,
+      "special_rate": 0.375
+    }
+  },
+  "Yonkers": {
+    "locality": "Yonkers",
+    "tax_rate_percentage": 8.875,
+    "reporting_code": "6511",
+    "mctd_included": true,
+    "original_locality": "Yonkers (city)",
+    "isCity": true,
+    "breakdown": {
+      "state_tax": 4,
+      "county_rate": 0,
+      "city_rate": 4.5,
+      "special_rate": 0.375
+    }
+  },
+  "Wyoming County": {
+    "locality": "Wyoming",
+    "tax_rate_percentage": 8,
+    "reporting_code": "5621",
+    "mctd_included": false,
+    "original_locality": "Wyoming",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  },
+  "Yates County": {
+    "locality": "Yates",
+    "tax_rate_percentage": 8,
+    "reporting_code": "5721",
+    "mctd_included": false,
+    "original_locality": "Yates",
+    "isCity": false,
+    "breakdown": {
+      "state_tax": 4,
+      "city_rate": 0,
+      "county_rate": 4,
+      "special_rate": 0
+    }
+  }
+}
