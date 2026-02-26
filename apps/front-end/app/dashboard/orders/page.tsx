@@ -1,6 +1,5 @@
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Plus } from 'lucide-react';
+import { CreateOrderDialog } from './components/CreateOrderDialog';
 
 export default function DashboardOrders() {
   return (
@@ -11,9 +10,7 @@ export default function DashboardOrders() {
             <CardTitle className="font-bold text-4xl capitalize">
               Orders list
             </CardTitle>
-            <Button>
-              <Plus /> Create order
-            </Button>
+            <CreateOrderDialog />
           </CardHeader>
           <CardContent className="flex flex-col gap-6">
             <Card>
