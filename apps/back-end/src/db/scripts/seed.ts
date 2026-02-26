@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm';
+import { SQL, sql } from 'drizzle-orm';
 import { createDrizzleInstance, DrizzleClient } from '../index.js';
 import shapefile from 'shapefile';
 import path from 'node:path';
@@ -31,13 +31,13 @@ async function seedConfig(db: DrizzleClient) {
   console.log('Seeding config...');
   console.log(`Base state tax: ${BASE_STATE_TAX}`);
 
-  const source = await shapefile.open(
+  const stateSource = await shapefile.open(
     path.resolve(SHAPEFILES_LOCATION, 'State_Shoreline.shp'),
     path.resolve(SHAPEFILES_LOCATION, 'State_Shoreline.dbf'),
   );
 
-  const stateData = await source.read();
-  await source.cancel();
+  const stateData = await stateSource.read();
+  await stateSource.cancel();
 
   await db.execute(
     sql`INSERT INTO config (base_tax, state_geom) VALUES (${BASE_STATE_TAX}, ST_Transform(
@@ -47,22 +47,32 @@ async function seedConfig(db: DrizzleClient) {
   );
 }
 
-async function seedCounties(db: DrizzleClient) {
-  console.log('Clearing cities table...');
+async function seed({
+  db,
+  dbfFileName,
+  shpFileName,
+  tableName,
+}: {
+  db: DrizzleClient;
+  shpFileName: string;
+  dbfFileName: string;
+  tableName: string;
+}) {
+  console.log(`Clearing ${tableName} table...`);
 
-  await db.execute(sql`DELETE FROM counties;`);
+  await db.execute(sql`DELETE FROM ${sql.identifier(tableName)};`);
 
-  console.log('Seeding counties...');
+  console.log(`Seeding ${tableName}...`);
   console.log('Reading from shp & dbf files...');
 
   const source = await shapefile.open(
-    path.resolve(SHAPEFILES_LOCATION, 'Counties_Shoreline.shp'),
-    path.resolve(SHAPEFILES_LOCATION, 'Counties_Shoreline.dbf'),
+    path.resolve(SHAPEFILES_LOCATION, shpFileName),
+    path.resolve(SHAPEFILES_LOCATION, dbfFileName),
   );
 
   let result = await source.read();
 
-  const batch: string[] = [];
+  const batch: SQL[] = [];
   let batchCount = 1;
 
   while (!result.done) {
@@ -73,16 +83,19 @@ async function seedCounties(db: DrizzleClient) {
       continue;
     }
 
+    const geodataType = properties.boroname ? 4326 : 26918;
+    const name = properties.NAME || properties.boroname;
+
     batch.push(
-      `('${properties.NAME}', ST_Transform(
-        ST_SetSRID(ST_GeomFromGeoJSON('${JSON.stringify(geometry)}'), 26918), 
+      sql`(${name}, ST_Transform(
+        ST_SetSRID(ST_GeomFromGeoJSON(${JSON.stringify(geometry)}), ${geodataType}), 
         4326
       ))`,
     );
 
     if (batch.length >= BATCH_AMOUNT) {
       await db.execute(
-        sql`INSERT INTO counties(name, geom) VALUES ${sql.raw(batch.join(','))}`,
+        sql`INSERT INTO ${sql.identifier(tableName)}(name, geom) VALUES ${sql.join(batch, sql`,`)}`,
       );
 
       console.log(
@@ -98,67 +111,7 @@ async function seedCounties(db: DrizzleClient) {
   }
 
   await db.execute(
-    sql`INSERT INTO counties(name, geom) VALUES ${sql.raw(batch.join(','))}`,
-  );
-
-  console.log(
-    `[Batch #${batchCount}] Inserted ${batch.length} records into db`,
-  );
-}
-
-async function seedCities(db: DrizzleClient) {
-  console.log('Clearing cities table...');
-
-  await db.execute(sql`DELETE FROM cities;`);
-
-  console.log('Seeding cities...');
-  console.log('Reading from shp & dbf files...');
-
-  const source = await shapefile.open(
-    path.resolve(SHAPEFILES_LOCATION, 'Cities.shp'),
-    path.resolve(SHAPEFILES_LOCATION, 'Cities.dbf'),
-  );
-
-  let result = await source.read();
-
-  const batch: string[] = [];
-  let batchCount = 1;
-
-  while (!result.done) {
-    const { properties, geometry } = result.value;
-
-    if (!properties) {
-      result = await source.read();
-
-      continue;
-    }
-
-    batch.push(
-      `('${properties.NAME}', ST_Transform(
-        ST_SetSRID(ST_GeomFromGeoJSON('${JSON.stringify(geometry)}'), 26918), 
-        4326
-      ))`,
-    );
-
-    if (batch.length >= BATCH_AMOUNT) {
-      await db.execute(
-        sql`INSERT INTO cities(name, geom) VALUES ${sql.raw(batch.join(','))}`,
-      );
-
-      console.log(
-        `[Batch #${batchCount}] Inserted ${BATCH_AMOUNT} records into db`,
-      );
-
-      batchCount++;
-
-      batch.length = 0;
-    }
-
-    result = await source.read();
-  }
-
-  await db.execute(
-    sql`INSERT INTO cities(name, geom) VALUES ${sql.raw(batch.join(','))}`,
+    sql`INSERT INTO ${sql.identifier(tableName)}(name, geom) VALUES ${sql.join(batch, sql`,`)}`,
   );
 
   console.log(
@@ -168,8 +121,34 @@ async function seedCities(db: DrizzleClient) {
 
 async function seedGISData(db: DrizzleClient) {
   await seedConfig(db);
-  await seedCounties(db);
-  await seedCities(db);
+
+  await seed({
+    db,
+    shpFileName: 'State_WaterPolygons.shp',
+    dbfFileName: 'State_WaterPolygons.dbf',
+    tableName: 'water',
+  });
+
+  await seed({
+    db,
+    shpFileName: 'Cities.shp',
+    dbfFileName: 'Cities.dbf',
+    tableName: 'cities',
+  });
+
+  await seed({
+    db,
+    shpFileName: 'Counties_Shoreline.shp',
+    dbfFileName: 'Counties_Shoreline.dbf',
+    tableName: 'counties',
+  });
+
+  await seed({
+    db,
+    shpFileName: 'NYC_Borough.shp',
+    dbfFileName: 'NYC_Borough.dbf',
+    tableName: 'borough',
+  });
 }
 
 main().catch(console.error);

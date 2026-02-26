@@ -28,3 +28,11 @@ export function getConfigPath() {
     throw Error('Provide env config ');
   }
 }
+
+export function chunkArray<T>(array: T[], size: number) {
+  const chunkedArray: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunkedArray.push(array.slice(i, i + size));
+  }
+  return chunkedArray;
+}

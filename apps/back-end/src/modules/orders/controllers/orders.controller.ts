@@ -24,13 +24,13 @@ export class OrdersController {
   })
   @UseInterceptors(FileInterceptor('file'))
   public async importOrdersCsv(@UploadedFile() csv: Express.Multer.File) {
-    await this.ordersService.processUploadedCsv(csv);
-
-    return 'OK';
+    return await this.ordersService.processUploadedCsv(csv);
   }
 
   @Post()
-  public createOrder() {}
+  public createOrder() {
+    this.ordersService.createOrder();
+  }
 
   @Get()
   public getOrders() {}

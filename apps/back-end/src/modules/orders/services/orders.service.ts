@@ -1,54 +1,59 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { FileReaderService } from '../../file-reader/services/file-reader.service.js';
-import { DRIZZLE, type DrizzleClient } from '../../../db/index.js';
-import { sql } from 'drizzle-orm';
-import { booleanPointInPolygon, point } from '@turf/turf';
+import { GeocodeService } from '../../geocode/services/geocode.service.js';
+import { GetGeodataResult } from '../../geocode/types/index.js';
+import { chunkArray } from '../../../utils/index.js';
 
 @Injectable()
 export class OrdersService {
   public constructor(
     private fileReader: FileReaderService,
-    @Inject(DRIZZLE) private dbService: DrizzleClient,
+    private geoCodeService: GeocodeService,
   ) {}
 
   public async processUploadedCsv(file: Express.Multer.File) {
-    const result = await this.fileReader.processUploadedCsv(file);
-    const {
-      rows: [config],
-    } = await this.dbService.execute<{
-      base_tax: number;
-      geom_geojson: string;
-    }>(
-      sql`SELECT base_tax, ST_AsGeoJson(state_geom) as geom_geojson FROM config;`,
-    );
-    const statePolygon = JSON.parse(config.geom_geojson);
-    const results = [];
+    const csvData = await this.fileReader.processUploadedCsv(file);
+    const chunkedCsvData = chunkArray(csvData, 100);
+    const promises: Promise<GetGeodataResult[]>[] = [];
 
-    for (let i = 0; i < result.length; i++) {
-      const { longitude, latitude } = result[i];
-
-      const isInside = booleanPointInPolygon(
-        point([longitude, latitude]),
-        statePolygon,
+    for (const chunk of chunkedCsvData) {
+      promises.push(
+        this.geoCodeService.getGeodata(
+          chunk.map((c) => ({ id: c.id, lan: c.latitude, lon: c.longitude })),
+        ),
       );
-
-      if (!isInside) continue;
-
-      const {
-        rows: [data],
-      } = await this.dbService.execute<{
-        city: string;
-        county: string;
-      }>(sql`
-        WITH point AS (SELECT ST_SetSRID(ST_Point(${longitude}, ${latitude}), 4326) AS geom)
-        SELECT
-          c.name AS city,
-          co.name AS county
-        FROM point p
-        LEFT JOIN cities c ON ST_Contains(c.geom, p.geom)
-        LEFT JOIN counties co ON ST_Contains(co.geom, p.geom)
-        LIMIT 1
-      `);
     }
+
+    const resolvedPromises = await Promise.all(promises);
+
+    const results = resolvedPromises.reduce((prev, curr) => {
+      prev.push(...curr);
+
+      return prev;
+    }, []);
+
+    const notInState = results.filter((r) => !r.is_in_state).length;
+    const inStateButOnWater = results.filter(
+      (r) => r.is_in_state && r.is_on_water,
+    ).length;
+    const inStateAndNotOnWater = results.filter(
+      (r) => r.is_in_state && !r.is_on_water,
+    ).length;
+    const notInStateAndNotOnWater = results.filter(
+      (r) => !r.is_in_state && !r.is_on_water,
+    ).length;
+    const inNYCBoroughs = results.filter((r) => r.borough).length;
+
+    return {
+      importedRows: csvData.length,
+      notInState,
+      inStateButOnWater,
+      inStateAndNotOnWater,
+      inNYCBoroughs,
+      notInStateAndNotOnWater,
+      t: results.length,
+    };
   }
+
+  public createOrder() {}
 }
