@@ -55,14 +55,17 @@ export class TaxService {
 
     return IS_SINGLE_POINT ? result[0] : result;
   }
+  public roundToTwo(num: number): number {
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+  }
 
   public calcTax(amount: number, tax: number) {
-    return amount * (tax / 100);
+    return this.roundToTwo(amount * (tax / 100));
   }
 
   public combinedTaxAmount(amount: number, tax: number) {
     const taxAmount = this.calcTax(amount, tax);
 
-    return amount + taxAmount;
+    return this.roundToTwo(amount + taxAmount);
   }
 }
