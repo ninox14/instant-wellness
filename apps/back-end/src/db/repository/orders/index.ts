@@ -3,7 +3,7 @@ import { InsertOrderData } from './types.js';
 import { order } from '../../schema/order.schema.js';
 import { DRIZZLE, type DrizzleClient } from '../../constants.js';
 import { GetOrdersQueryDTO } from '../../../modules/orders/dtos/index.js';
-import { and, asc, desc, ilike, sql, SQL } from 'drizzle-orm';
+import { and, asc, count, desc, ilike, sql, SQL } from 'drizzle-orm';
 
 @Injectable()
 export class OrderRepository {
@@ -13,6 +13,46 @@ export class OrderRepository {
     return Array.isArray(data)
       ? this.dbService.insert(order).values(data).returning()
       : this.dbService.insert(order).values(data).returning();
+  }
+
+  public async getOrdersInfo() {
+    const [[{ totalOrders, totalRevenue }], recentOrders] = await Promise.all([
+      this.dbService
+        .select({
+          totalOrders: count(order.id),
+          totalRevenue: sql<number>`sum(${order.subtotal})::float8`,
+        })
+        .from(order),
+      this.dbService
+        .select({
+          id: order.id,
+          compositeTax: order.composite_tax,
+          taxAmount: order.tax_amount,
+          totalAmount: order.total_amount,
+          subtotal: order.subtotal,
+          timestamp: sql<string>`TO_CHAR(${order.timestamp}, 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')`,
+          breakdown: {
+            stateRate: order.state_rate,
+            countyRate: order.county_rate,
+            cityRate: order.city_tax,
+            specialRates: order.special_rate,
+            jurisdictions: order.jurisdictions,
+          },
+          geoInfo: {
+            city: order.city,
+            county: order.county,
+          },
+        })
+        .from(order)
+        .orderBy(desc(order.timestamp))
+        .limit(10),
+    ]);
+
+    return {
+      totalOrders,
+      totalRevenue,
+      recentOrders,
+    };
   }
 
   public async getOrders({ page, limit, ...filters }: GetOrdersQueryDTO) {
@@ -40,7 +80,7 @@ export class OrderRepository {
 
     if (filterKeys.length) {
       const key = filterKeys.pop();
-      const direction = filters[key!];
+      const direction = filters[key!] === 'asc' ? asc : desc;
       orderByConditions.push(direction(order.id));
     }
 

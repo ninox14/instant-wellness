@@ -13,12 +13,15 @@ import { OrdersService } from '../services/orders.service.js';
 import {
   CreateOrderRequestDTO,
   CreateOrderResponseDTO,
+  GetOrdersInfoResponseDTO,
   GetOrdersQueryDTO,
   GetOrdersResponseDTO,
   ImportOrderCsvResponseDTO,
 } from '../dtos/index.js';
 import { ZodResponse } from 'nestjs-zod';
 import { OrderRepository } from '../../../db/repository/index.js';
+import z from 'zod';
+import { GetOrdersInfoResponseSchema } from '@/common';
 
 @Controller('orders')
 export class OrdersController {
@@ -51,5 +54,11 @@ export class OrdersController {
   @ZodResponse({ type: GetOrdersResponseDTO })
   public getOrders(@Query() query: GetOrdersQueryDTO) {
     return this.orderRepository.getOrders(query);
+  }
+
+  @Get('info')
+  @ZodResponse({ type: GetOrdersInfoResponseDTO })
+  public getORdersInfo() {
+    return this.orderRepository.getOrdersInfo();
   }
 }
