@@ -4,12 +4,7 @@ import fs from 'node:fs';
 export function getConfigPath() {
   let configPath: string;
   if (process.env.NODE_ENV === 'prod') {
-    configPath = path.resolve(
-      process.cwd(),
-      '..',
-      'config',
-      '.env.production.local',
-    );
+    configPath = path.resolve(process.cwd(), 'config', '.env.production.local');
   } else {
     configPath = path.resolve(
       process.cwd(),
@@ -17,6 +12,7 @@ export function getConfigPath() {
       '.env.development.local',
     );
   }
+
   if (fs.existsSync(configPath)) {
     return configPath;
   }

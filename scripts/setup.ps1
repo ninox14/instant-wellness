@@ -10,9 +10,9 @@ pnpm build
 Write-Host "Applying DB migrations..."
 Set-Location $BackendDir
 
-pnpm db:migrate:dev
+pnpm db:migrate:prod
 
 Write-Host "Running seed script..."
-pnpm db:seed
+pnpm db:seed:prod
 
 Write-Host "Done"

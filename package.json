@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "turbo build",
+    "start": "turbo prod",
     "dev": "turbo dev"
   },
   "engines": {

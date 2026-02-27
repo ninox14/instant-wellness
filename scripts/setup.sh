@@ -11,9 +11,9 @@ pnpm build
 echo "Applying DB migrations..."
 cd "$BACKEND_DIR"
 
-pnpm db:migrate:dev
+pnpm db:migrate:prod
 
 echo "Running seed script..."
-pnpm db:seed
+pnpm db:seed:prod
 
 echo "Done"

@@ -19,7 +19,7 @@
 
 - **Docker** – [Install Docker](https://www.docker.com/get-started/)
   > Docker is required for ease of use before proceeding with any other steps. Installation can very from system to system.
-  > Alternatively you can use locally installed instance/server of postgresql.
+  > Alternatively you can use locally installed instance/server of postgresql. But for that you will need to have PostGIS installed. How to install: [link](https://postgis.net/documentation/getting_started/#installing-postgis)
 
 # Setup Instructions
 
@@ -51,12 +51,17 @@ cd <repository-folder>
 - Format this url according to your credentianls:
   > `postgresql://<username>:<password>@<host>:<port>/<database>`
 
+> If using Docker this step might be unnecessary. Just dont forget to run compose file. For linux you may need docker compose package installed.
+
 ### 5. Run the setup script
 
 - Choose the script according to your system:
   - **Linux/macOS**: `./scripts/setup.sh`
     > You may need to make script executable first: `chmod u+x ./scripts/setup.sh`
   - **Windows PowerShell**: `.\scripts\setup.ps1`
+    > Untested. We use linux. (arch btw)
+
+> By default, setup script will setup and build everything for prod trying to use production envs for back-end. (If you have singular .env inside back-end folder setup will be the same for dev/prod modes)
 
 ### 6. Start the applications
 
