@@ -1,5 +1,5 @@
 // use-orders.ts
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { http, NestError } from '@/lib/api';
 import type { GetOrdersFilters, GetOrdersReturn } from '@/common';
 
@@ -15,7 +15,14 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
   const [error, setError] = useState<NestError | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // Store previous filters for deep comparison
+  const prevFiltersRef = useRef<string>('');
+
   useEffect(() => {
+    const currentFilters = JSON.stringify(filters ?? {});
+    if (prevFiltersRef.current === currentFilters) return; // no change
+
+    prevFiltersRef.current = currentFilters;
     let isCancelled = false;
 
     async function fetchOrders() {
@@ -27,31 +34,24 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
         const response = await http.get<GetOrdersReturn, NestError>(
           ORDERS_URL + queryString,
         );
-        if (!isCancelled) {
-          setData(response);
-        }
+        if (!isCancelled) setData(response);
       } catch (err) {
-        if (!isCancelled) {
-          setError(err as NestError);
-        }
+        if (!isCancelled) setError(err as NestError);
       } finally {
-        if (!isCancelled) {
-          setIsLoading(false);
-        }
+        if (!isCancelled) setIsLoading(false);
       }
     }
 
     fetchOrders();
 
     return () => {
-      isCancelled = true; // cancel setState if component unmounts
+      isCancelled = true;
     };
-  }, [filters]);
+  }, [filters]); // will still trigger effect when filters reference changes, but deep compare prevents unnecessary fetch
 
   return { data, error, isLoading };
 }
 
-// Helper to build query string from filters
 function buildQueryString(filters?: GetOrdersFilters) {
   if (!filters) return '';
   const params = new URLSearchParams();
