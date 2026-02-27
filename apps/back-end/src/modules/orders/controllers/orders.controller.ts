@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -12,13 +13,19 @@ import { OrdersService } from '../services/orders.service.js';
 import {
   CreateOrderRequestDTO,
   CreateOrderResponseDTO,
+  GetOrdersQueryDTO,
+  GetOrdersResponseDTO,
   ImportOrderCsvResponseDTO,
 } from '../dtos/index.js';
 import { ZodResponse } from 'nestjs-zod';
+import { OrderRepository } from '../../../db/repository/index.js';
 
 @Controller('orders')
 export class OrdersController {
-  public constructor(private ordersService: OrdersService) {}
+  public constructor(
+    private ordersService: OrdersService,
+    private orderRepository: OrderRepository,
+  ) {}
 
   @Post('import')
   @ApiConsumes('multipart/form-data')
@@ -41,5 +48,8 @@ export class OrdersController {
   }
 
   @Get()
-  public getOrders() {}
+  @ZodResponse({ type: GetOrdersResponseDTO })
+  public getOrders(@Query() query: GetOrdersQueryDTO) {
+    return this.orderRepository.getOrders(query);
+  }
 }

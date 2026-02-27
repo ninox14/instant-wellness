@@ -1,5 +1,7 @@
 import {
   CreateOrderSchema,
+  GetOrdersFiltersSchema,
+  GetOrdersReturnSchema,
   ImportCsvResponseSchema,
   OrderSchema,
 } from '@/common';
@@ -12,3 +14,7 @@ export class CreateOrderResponseDTO extends createZodDto(OrderSchema) {}
 export class ImportOrderCsvResponseDTO extends createZodDto(
   ImportCsvResponseSchema,
 ) {}
+
+export class GetOrdersQueryDTO extends createZodDto(GetOrdersFiltersSchema) {}
+
+export class GetOrdersResponseDTO extends createZodDto(GetOrdersReturnSchema) {}

@@ -18,6 +18,7 @@ const bootstrap = async () => {
     origin: 'http://localhost:3000',
     credentials: true,
   });
+
   app.use(
     '/api/docs',
     apiReference({ content: cleanupOpenApiDoc(document), theme: 'deepSpace' }),
