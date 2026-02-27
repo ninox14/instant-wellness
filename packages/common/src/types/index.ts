@@ -78,12 +78,22 @@ export const GetOrdersReturnSchema = z.object({
 /**
  * Request types:
  */
+
+// Use this type to know how to construct query for GET /orders/
 export type GetOrdersFiltersRequestDTO = z.infer<typeof GetOrdersFiltersSchema>;
+
+// Use this type to know what to include in body for POST /orders/
 export type CreateOrderRequestDTO = z.infer<typeof CreateOrderSchema>;
 
 /**
  * Response types:
  */
+
+// Misc type if you will need it, specifies meta field returned by GET /orders/ contains pagination information
 export type PaginationMetaDTO = z.infer<typeof PaginationMetaSchema>;
+
+// Return type for GET /orders/
 export type GetOrdersResponseDTO = z.infer<typeof GetOrdersReturnSchema>;
+
+// Return type for POST /orders/import
 export type ImportCsvResponseDTO = z.infer<typeof ImportCsvResponseSchema>;
