@@ -40,7 +40,7 @@ export default function OrderFilters({
   function handleLimitChange(value: string) {
     setFilters({ ...filters, limit: Number(value) });
   }
-
+  console.log(meta);
   return (
     <div className="space-y-4">
       {/* Filters */}
