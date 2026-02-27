@@ -1,6 +1,7 @@
 import {
   CreateOrderSchema,
   GetOrdersFiltersSchema,
+  GetOrdersInfoResponseSchema,
   GetOrdersReturnSchema,
   ImportCsvResponseSchema,
   OrderSchema,
@@ -18,3 +19,7 @@ export class ImportOrderCsvResponseDTO extends createZodDto(
 export class GetOrdersQueryDTO extends createZodDto(GetOrdersFiltersSchema) {}
 
 export class GetOrdersResponseDTO extends createZodDto(GetOrdersReturnSchema) {}
+
+export class GetOrdersInfoResponseDTO extends createZodDto(
+  GetOrdersInfoResponseSchema,
+) {}
