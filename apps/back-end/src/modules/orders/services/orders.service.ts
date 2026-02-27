@@ -2,7 +2,10 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { FileReaderService } from '../../file-reader/services/file-reader.service.js';
 import { GeocodeService } from '../../geocode/services/geocode.service.js';
 import { chunkArray } from '@/common';
-import { CreateOrderRequestDTO } from '../dtos/index.js';
+import {
+  CreateOrderRequestDTO,
+  CreateOrderResponseDTO,
+} from '../dtos/index.js';
 import { TaxService } from '../../tax/services/tax.service.js';
 import { GetGeodataResult } from '../../../db/repository/geodata/types.js';
 import { OrderRepository } from '../../../db/repository/index.js';
@@ -104,7 +107,11 @@ export class OrdersService {
     };
   }
 
-  public async createOrder({ lat, lon, subtotal }: CreateOrderRequestDTO) {
+  public async createOrder({
+    lat,
+    lon,
+    subtotal,
+  }: CreateOrderRequestDTO): Promise<CreateOrderResponseDTO> {
     const [data] = await this.geoCodeService.getGeodata({
       id: 0,
       lat,
@@ -148,6 +155,24 @@ export class OrdersService {
       subtotal,
     });
 
-    return order;
+    return {
+      id: order.id,
+      subtotal: order.subtotal,
+      timestamp: order.timestamp,
+      taxAmount: order.tax_amount,
+      totalAmount: order.total_amount,
+      compositeTax: order.composite_tax,
+      geoInfo: {
+        city: order.city,
+        county: order.county,
+      },
+      breakdown: {
+        cityRate: order.city_tax,
+        countyRate: order.county_rate,
+        specialRates: order.special_rate,
+        stateRate: order.state_rate,
+        jurisdictions: order.jurisdictions,
+      },
+    };
   }
 }

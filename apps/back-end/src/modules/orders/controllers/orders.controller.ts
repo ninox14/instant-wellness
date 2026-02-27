@@ -12,6 +12,7 @@ import { OrdersService } from '../services/orders.service.js';
 import {
   CreateOrderRequestDTO,
   CreateOrderResponseDTO,
+  ImportOrderCsvResponseDTO,
 } from '../dtos/index.js';
 import { ZodResponse } from 'nestjs-zod';
 
@@ -27,13 +28,14 @@ export class OrdersController {
       properties: { file: { type: 'string', format: 'binary' } },
     },
   })
+  @ZodResponse({ type: ImportOrderCsvResponseDTO })
   @UseInterceptors(FileInterceptor('file'))
-  public async importOrdersCsv(@UploadedFile() csv: Express.Multer.File) {
-    return await this.ordersService.processUploadedCsv(csv);
+  public importOrdersCsv(@UploadedFile() csv: Express.Multer.File) {
+    return this.ordersService.processUploadedCsv(csv);
   }
 
   @Post()
-  // @ZodResponse({ type: CreateOrderResponseDTO })
+  @ZodResponse({ type: CreateOrderResponseDTO })
   public createOrder(@Body() order: CreateOrderRequestDTO) {
     return this.ordersService.createOrder(order);
   }
