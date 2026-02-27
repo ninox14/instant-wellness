@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CreateOrderDialog } from './CreateOrderDialog';
+import { CreateOrderDialog } from './CreateOrderDialog/index.';
 import { OrdersDataTable } from './OrdersTable';
 import { columns } from './OrdersTable/orders-columns';
 import { GetOrdersFilters, GetOrdersReturn } from '@/common';
