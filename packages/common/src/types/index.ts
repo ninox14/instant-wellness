@@ -1,12 +1,18 @@
-import z from "zod";
+import z from 'zod';
 
 export const CreateOrderSchema = z
   .object({
     lat: z.number(),
     lon: z.number(),
-    subtotal: z.number()
+    subtotal: z.number(),
   })
   .required();
+
+export type CreateOrder = {
+  lat: number;
+  lon: number;
+  subtotal: number;
+};
 
 export const OrderSchemaBreakdown = z
   .object({
@@ -14,38 +20,64 @@ export const OrderSchemaBreakdown = z
     countyRate: z.number(),
     cityRate: z.number(),
     specialRates: z.number(),
-    jurisdictions: z.array(z.string()).nullable()
+    jurisdictions: z.array(z.string()).nullable(),
   })
   .required();
+
+export type OrderBreakdown = {
+  stateRate: number;
+  countyRate: number;
+  cityRate: number;
+  specialRates: number;
+  jurisdictions: string[] | null;
+};
 
 export const OrderSchemaGeoInfo = z
   .object({ city: z.string().nullable(), county: z.string().nullable() })
   .required();
 
-export const OrderSchema = z
-  .object({
-    id: z.number(),
-    compositeTax: z.number(),
-    taxAmount: z.number(),
-    totalAmount: z.number(),
-    subtotal: z.number(),
-    timestamp: z.iso.datetime(),
-    breakdown: OrderSchemaBreakdown,
-    geoInfo: OrderSchemaGeoInfo
-  })
-  .required();
+export type OrderGeoInfo = {
+  city: string | null;
+  county: string | null;
+};
 
-export type Order = z.infer<typeof OrderSchema>;
+export const OrderSchema = z.object({
+  id: z.number(),
+  compositeTax: z.number(),
+  taxAmount: z.number(),
+  totalAmount: z.number(),
+  subtotal: z.number(),
+  timestamp: z.iso.datetime(),
+  breakdown: OrderSchemaBreakdown,
+  geoInfo: OrderSchemaGeoInfo,
+});
+
+export type Order = {
+  id: number;
+  compositeTax: number;
+  taxAmount: number;
+  totalAmount: number;
+  subtotal: number;
+  timestamp: string; // ISO datetime
+  breakdown: OrderBreakdown;
+  geoInfo: OrderGeoInfo;
+};
 
 export const ImportCsvResponseSchema = z
   .object({
     parsedCsvRows: z.number(),
     filteredRows: z.number(),
-    insertedCount: z.number()
+    insertedCount: z.number(),
   })
   .required();
 
-const SORT_DIRECTIONS = ["asc", "desc"];
+export type ImportCsvResponse = {
+  parsedCsvRows: number;
+  filteredRows: number;
+  insertedCount: number;
+};
+
+const SORT_DIRECTIONS = ['asc', 'desc'];
 
 export const GetOrdersFiltersSchema = z.object({
   page: z.coerce.number().min(1).int().default(1),
@@ -60,21 +92,48 @@ export const GetOrdersFiltersSchema = z.object({
   subtotal: z.enum(SORT_DIRECTIONS).optional(),
   timestamp: z.enum(SORT_DIRECTIONS).optional(),
   city: z.string().optional(),
-  county: z.string().optional()
+  county: z.string().optional(),
 });
+
+export type GetOrdersFilters = {
+  page?: number;
+  limit?: number;
+  composite_tax?: 'asc' | 'desc';
+  city_tax?: 'asc' | 'desc';
+  state_rate?: 'asc' | 'desc';
+  special_rate?: 'asc' | 'desc';
+  county_rate?: 'asc' | 'desc';
+  tax_amount?: 'asc' | 'desc';
+  total_amount?: 'asc' | 'desc';
+  subtotal?: 'asc' | 'desc';
+  timestamp?: 'asc' | 'desc';
+  city?: string;
+  county?: string;
+};
 
 export const PaginationMetaSchema = z.object({
   page: z.number(),
   limit: z.number(),
   total: z.number(),
-  totalPages: z.number()
+  totalPages: z.number(),
 });
+
+export type PaginationMeta = {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+};
 
 export const GetOrdersReturnSchema = z.object({
   meta: PaginationMetaSchema,
-  data: z.array(OrderSchema)
+  data: z.array(OrderSchema),
 });
 
+export type GetOrdersReturn = {
+  meta: PaginationMeta;
+  data: Order[];
+};
 /**
  * Request types:
  */
