@@ -18,6 +18,7 @@ type Props = {
   filters: GetOrdersFilters;
   setFilters: (filters: GetOrdersFilters) => void;
   meta?: PaginationMeta;
+  loading: boolean;
   page: number;
   setPage: (page: number) => void;
 };

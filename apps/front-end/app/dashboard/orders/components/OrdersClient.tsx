@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CreateOrderDialog } from './CreateOrderDialog/index.';
 import { OrdersDataTable } from './OrdersTable';
@@ -10,6 +10,7 @@ import { useOrders } from './use-orders';
 import OrderFilters from './OrderFilters';
 import { SortingState } from '@tanstack/react-table';
 import { useDebounce } from '@/hooks/use-debounce';
+import { Spinner } from '@/components/ui/spinner';
 
 interface OrdersClientProps {
   initialResponse: GetOrdersReturn | null;
@@ -24,8 +25,7 @@ export default function OrdersClient({ initialResponse }: OrdersClientProps) {
     filters?.county?.trim() || '',
     1000,
   );
-
-  const { data, error, isLoading } = useOrders({
+  const { data, isLoading } = useOrders({
     filters: {
       ...filters,
       city: debouncedCitySearch.length > 2 ? debouncedCitySearch : undefined,
@@ -57,7 +57,6 @@ export default function OrdersClient({ initialResponse }: OrdersClientProps) {
       return newSorting;
     });
   };
-
   return (
     <Card className="w-full border-none shadow-none">
       <CardHeader className="flex items-center justify-between">
@@ -69,8 +68,9 @@ export default function OrdersClient({ initialResponse }: OrdersClientProps) {
 
       <CardContent className="flex flex-col gap-6">
         <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Filters</CardTitle>
+          <CardHeader className="flex">
+            <CardTitle className="text-lg grow">Filters</CardTitle>
+            {isLoading && <Spinner className="w-6 h-6" />}
           </CardHeader>
           <CardContent className="">
             <OrderFilters
@@ -78,6 +78,7 @@ export default function OrdersClient({ initialResponse }: OrdersClientProps) {
               meta={data?.meta}
               page={page}
               setPage={setPage}
+              loading={isLoading}
               setFilters={setFilters}
             />
           </CardContent>

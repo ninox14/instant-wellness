@@ -1,4 +1,5 @@
-// use-orders.ts
+'use-client';
+
 import { useEffect, useState, useRef } from 'react';
 import { http, NestError } from '@/lib/api';
 import type { GetOrdersFilters, GetOrdersReturn } from '@/common';
@@ -17,24 +18,32 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
 
   // Store previous filters for deep comparison
   const prevFiltersRef = useRef<string>('');
+  const initial = useRef<boolean>(true);
 
   useEffect(() => {
-    const currentFilters = JSON.stringify(filters ?? {});
-    if (prevFiltersRef.current === currentFilters) return; // no change
-
-    prevFiltersRef.current = currentFilters;
     let isCancelled = false;
-
     async function fetchOrders() {
+      if (initial.current && initialData) {
+        initial.current = false;
+        return () => {
+          isCancelled = true;
+        };
+      }
+
       setIsLoading(true);
       setError(null);
 
       try {
         const queryString = buildQueryString(filters);
+
+        if (prevFiltersRef.current === queryString) return; // no change
         const response = await http.get<GetOrdersReturn, NestError>(
           ORDERS_URL + queryString,
         );
-        if (!isCancelled) setData(response);
+        if (!isCancelled) {
+          prevFiltersRef.current = queryString;
+          setData(response);
+        }
       } catch (err) {
         if (!isCancelled) setError(err as NestError);
       } finally {
@@ -47,7 +56,7 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
     return () => {
       isCancelled = true;
     };
-  }, [filters]); // will still trigger effect when filters reference changes, but deep compare prevents unnecessary fetch
+  }, [filters, initialData]); // will still trigger effect when filters reference changes, but deep compare prevents unnecessary fetch
 
   return { data, error, isLoading };
 }
