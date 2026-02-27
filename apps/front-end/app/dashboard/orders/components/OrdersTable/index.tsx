@@ -7,6 +7,7 @@ import {
   useReactTable,
   getSortedRowModel,
   SortingState,
+  OnChangeFn,
 } from '@tanstack/react-table';
 
 import {
@@ -18,19 +19,21 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  sorting: SortingState;
+  setSorting: OnChangeFn<SortingState>;
 }
 
 export function OrdersDataTable<TData, TValue>({
   columns,
   data,
+  sorting,
+  setSorting,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-
   // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
