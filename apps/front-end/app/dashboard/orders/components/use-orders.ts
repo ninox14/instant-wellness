@@ -22,6 +22,15 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
 
   useEffect(() => {
     let isCancelled = false;
+    const queryString = buildQueryString(filters);
+
+    if (prevFiltersRef.current === queryString) {
+      setIsLoading(false);
+      return () => {
+        isCancelled = true;
+      };
+    }
+
     async function fetchOrders() {
       if (initial.current && initialData) {
         initial.current = false;
@@ -30,13 +39,9 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
         };
       }
 
-      setIsLoading(true);
-      setError(null);
-
       try {
-        const queryString = buildQueryString(filters);
-
-        if (prevFiltersRef.current === queryString) return; // no change
+        setError(null);
+        setIsLoading(true);
         const response = await http.get<GetOrdersReturn, NestError>(
           ORDERS_URL + queryString,
         );
@@ -47,6 +52,7 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
       } catch (err) {
         if (!isCancelled) setError(err as NestError);
       } finally {
+        prevFiltersRef.current = queryString;
         if (!isCancelled) setIsLoading(false);
       }
     }

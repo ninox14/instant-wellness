@@ -30,7 +30,7 @@ export const api = ky.create({
     afterResponse: [
       async (_request, _options, response) => {
         if (!response.ok) {
-          console.error('API Error:', response.status);
+          console.error('API Error:', await response.json());
         }
       },
     ],
