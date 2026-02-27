@@ -41,7 +41,7 @@ export class OrderRepository {
     if (filterKeys.length) {
       const key = filterKeys.pop();
       const direction = filters[key!];
-      orderByConditions.push(direction(order[key!]));
+      orderByConditions.push(direction(order.id));
     }
 
     const whereClause = whereConditions.length
