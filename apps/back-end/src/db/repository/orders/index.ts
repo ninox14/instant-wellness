@@ -29,11 +29,19 @@ export class OrderRepository {
       whereConditions.push(ilike(order.county, `%${filters.county}%`));
     }
 
-    for (const key of Object.keys(filters)) {
+    const filterKeys = Object.keys(filters);
+
+    for (const key of filterKeys) {
       const sortDirection: 'asc' | 'desc' = filters[key];
       const drizzleDirection = sortDirection === 'asc' ? asc : desc;
 
       orderByConditions.push(drizzleDirection(order[key]));
+    }
+
+    if (filterKeys.length) {
+      const key = filterKeys.pop();
+      const direction = filters[key!];
+      orderByConditions.push(direction(order[key!]));
     }
 
     const whereClause = whereConditions.length
