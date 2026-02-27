@@ -28,7 +28,17 @@ export function SortableHeader<TData, TValue>({
 export const columns: ColumnDef<Order>[] = [
   {
     accessorKey: 'id',
-    header: 'ID',
+    header: ({ column }) => <SortableHeader column={column} title="ID" />,
+  },
+  {
+    id: 'county',
+    accessorFn: (row) => row.geoInfo.county,
+    header: 'County',
+  },
+  {
+    id: 'city',
+    accessorFn: (row) => row.geoInfo.city,
+    header: 'City',
   },
   {
     accessorKey: 'timestamp',
@@ -82,15 +92,5 @@ export const columns: ColumnDef<Order>[] = [
     header: ({ column }) => (
       <SortableHeader column={column} title="Special Rate" />
     ),
-  },
-  {
-    id: 'city',
-    accessorFn: (row) => row.geoInfo.city,
-    header: 'City',
-  },
-  {
-    id: 'county',
-    accessorFn: (row) => row.geoInfo.county,
-    header: 'County',
   },
 ];
