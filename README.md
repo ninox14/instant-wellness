@@ -35,7 +35,7 @@ Before setting up and running the project, make sure the following requirements 
   - **Node.js:** Required to run frontend and backend applications locally. Recommended version: 24+.
   - **pnpm:** Used as the package manager in this project for efficient dependency management. Install it globally:
 
- `npm install -g pnpm`
+       `npm install -g pnpm`
  
 - **Git**
   - Git is required to clone the repository and manage version control.
