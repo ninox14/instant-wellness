@@ -1,4 +1,31 @@
+version: "3.9"
+
 services:
+  frontend:
+    build: ./apps/front-end
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/front-end:/app
+      - /app/node_modules
+    command: pnpm dev
+    depends_on:
+      - backend
+      - db
+
+  backend:
+    build: ./apps/back-end
+    container_name: backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./apps/back-end:/app
+      - /app/node_modules
+    command: pnpm dev
+    depends_on:
+      - db
+
   db:
     image: postgis/postgis:latest
     restart: unless-stopped
