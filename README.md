@@ -1,3 +1,4 @@
+
 # Project structure
 
 - `apps/*` - applications itself, client and server
@@ -5,13 +6,15 @@
   > Useful utils snippets can be stored there if you plan on re-use them accross applications. Also types for API responses/requests will be stored there to make it easier and less "copy-paste".
 
 # Project stack
-
+This project is a TypeScript-based monorepo that includes both backend and frontend applications. It is designed with scalability and maintainability in mind, leveraging modern frameworks and tools.
 - Back-end:
-  - NestJS as main framework, drizzle-orm
+  - NestJS is used as the main backend framework, providing a modular and structured architecture.
+  - DataBase Layer: Drizzle ORM is integrated for type-safe database queries and migrations.
 - Front-end:
-  - WIP
+  - Framework:  Currently a work in progress (WIP). The frontend is being developed with modern web technologies, ensuring seamless integration with the backend.
 - General:
-  - Everything in TypeScript.
+  -  Both backend and frontend are implemented in TypeScript, ensuring type safety, better tooling, and maintainability across the entire project.
+  -  Docker Support: The project includes Docker and Docker Compose configurations for running backend, frontend, and database services in isolated containers.
 
 # Project Setup
 
