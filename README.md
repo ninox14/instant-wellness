@@ -45,7 +45,9 @@ You need to provide environment variables for different parts of the project.
 ### 3. Start Docker services
 
 Run the following command to start all services in detached mode:
+
 `docker compose up -d`
+
 This will spin up the frontend, backend, and database containers.
 
 ### 4. Create the database
