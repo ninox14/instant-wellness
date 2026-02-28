@@ -25,9 +25,18 @@ This project is a TypeScript-based monorepo that includes both backend and front
 Follow these steps to set up and run the project locally or inside Docker:
 ## Pre-requisites
 
+Before setting up and running the project, make sure the following requirements are met:
+
 - **Docker** – [Install Docker](https://www.docker.com/get-started/)
   > Docker is required for ease of use before proceeding with any other steps. Installation can very from system to system.
   > Alternatively you can use locally installed instance/server of postgresql. But for that you will need to have PostGIS installed. How to install: [link](https://postgis.net/documentation/getting_started/#installing-postgis)
+  
+- **Node.js and pnpm**
+  - **Node.js:** Required to run frontend and backend applications locally. Recommended version: 24+.
+  - **pnpm:** Used as the package manager in this project for efficient dependency management. Install it globally:
+    `npm install -g pnpm`
+- **Git**
+  - Git is required to clone the repository and manage version control.
 
 # Setup Instructions
 
