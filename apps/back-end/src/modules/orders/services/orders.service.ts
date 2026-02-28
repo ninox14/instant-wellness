@@ -158,7 +158,7 @@ export class OrdersService {
     return {
       id: order.id,
       subtotal: order.subtotal,
-      timestamp: order.timestamp,
+      timestamp: new Date(order.timestamp).toISOString(),
       taxAmount: order.tax_amount,
       totalAmount: order.total_amount,
       compositeTax: order.composite_tax,
