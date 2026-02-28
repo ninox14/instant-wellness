@@ -1,8 +1,13 @@
 
 # Project structure
 
-- `apps/*` - applications itself, client and server
+- `apps/*` - This folder contains the applications themselves:
+  - `apps/front-end` - The client-side application (Next.js, TypeScript).
+  - `apps/back-end` - The server-side application (NestJS, Drizzle ORM, TypeScript).
+
+Each application is self-contained, with its own configuration, dependencies, and environment variables.
 - `packages/*` - "libs" or "shared packages" with re-usable code
+    - This folder contains shared libraries and utilities 
   > Useful utils snippets can be stored there if you plan on re-use them accross applications. Also types for API responses/requests will be stored there to make it easier and less "copy-paste".
 
 # Project stack
