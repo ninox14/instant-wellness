@@ -1,10 +1,10 @@
-import z from "zod";
+import z from 'zod';
 
 export const CreateOrderSchema = z
   .object({
     lat: z.number(),
     lon: z.number(),
-    subtotal: z.number()
+    subtotal: z.number(),
   })
   .required();
 
@@ -20,7 +20,7 @@ export const OrderSchemaBreakdown = z
     countyRate: z.number(),
     cityRate: z.number(),
     specialRates: z.number(),
-    jurisdictions: z.array(z.string()).nullable()
+    jurisdictions: z.array(z.string()).nullable(),
   })
   .required();
 
@@ -49,7 +49,7 @@ export const OrderSchema = z.object({
   subtotal: z.number(),
   timestamp: z.iso.datetime(),
   breakdown: OrderSchemaBreakdown,
-  geoInfo: OrderSchemaGeoInfo
+  geoInfo: OrderSchemaGeoInfo,
 });
 
 export type Order = {
@@ -67,7 +67,7 @@ export const ImportCsvResponseSchema = z
   .object({
     parsedCsvRows: z.number(),
     filteredRows: z.number(),
-    insertedCount: z.number()
+    insertedCount: z.number(),
   })
   .required();
 
@@ -77,7 +77,7 @@ export type ImportCsvResponse = {
   insertedCount: number;
 };
 
-const SORT_DIRECTIONS = ["asc", "desc"];
+const SORT_DIRECTIONS = ['asc', 'desc'];
 
 export const GetOrdersFiltersSchema = z.object({
   page: z.coerce.number().min(1).int().default(1),
@@ -92,21 +92,21 @@ export const GetOrdersFiltersSchema = z.object({
   subtotal: z.enum(SORT_DIRECTIONS).optional(),
   timestamp: z.enum(SORT_DIRECTIONS).optional(),
   city: z.string().optional(),
-  county: z.string().optional()
+  county: z.string().optional(),
 });
 
 export type GetOrdersFilters = {
   page?: number;
   limit?: number;
-  composite_tax?: "asc" | "desc";
-  city_tax?: "asc" | "desc";
-  state_rate?: "asc" | "desc";
-  special_rate?: "asc" | "desc";
-  county_rate?: "asc" | "desc";
-  tax_amount?: "asc" | "desc";
-  total_amount?: "asc" | "desc";
-  subtotal?: "asc" | "desc";
-  timestamp?: "asc" | "desc";
+  composite_tax?: 'asc' | 'desc';
+  city_tax?: 'asc' | 'desc';
+  state_rate?: 'asc' | 'desc';
+  special_rate?: 'asc' | 'desc';
+  county_rate?: 'asc' | 'desc';
+  tax_amount?: 'asc' | 'desc';
+  total_amount?: 'asc' | 'desc';
+  subtotal?: 'asc' | 'desc';
+  timestamp?: 'asc' | 'desc';
   city?: string;
   county?: string;
 };
@@ -115,7 +115,7 @@ export const PaginationMetaSchema = z.object({
   page: z.number(),
   limit: z.number(),
   total: z.number(),
-  totalPages: z.number()
+  totalPages: z.number(),
 });
 
 export type PaginationMeta = {
@@ -128,7 +128,7 @@ export type PaginationMeta = {
 export const GetOrdersInfoResponseSchema = z.object({
   totalOrders: z.number(),
   totalRevenue: z.number(),
-  recentOrders: z.array(OrderSchema)
+  recentOrders: z.array(OrderSchema),
 });
 
 export type GetOrdersInfoReturn = {
@@ -139,7 +139,7 @@ export type GetOrdersInfoReturn = {
 
 export const GetOrdersReturnSchema = z.object({
   meta: PaginationMetaSchema,
-  data: z.array(OrderSchema)
+  data: z.array(OrderSchema),
 });
 
 export type GetOrdersReturn = {

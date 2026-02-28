@@ -24,7 +24,7 @@ export class OrderRepository {
       this.dbService
         .select({
           totalOrders: count(order.id),
-          totalRevenue: sql<number>`sum(${order.subtotal})::float8`,
+          totalRevenue: sql<number | null>`sum(${order.subtotal})::float8`,
         })
         .from(order),
       this.dbService
@@ -54,7 +54,7 @@ export class OrderRepository {
 
     return {
       totalOrders,
-      totalRevenue,
+      totalRevenue: totalRevenue ?? 0,
       recentOrders,
     };
   }

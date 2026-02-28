@@ -2,6 +2,8 @@ import OrdersClient from './components/OrdersClient';
 import { http } from '@/lib/api';
 import { GetOrdersReturn } from '@/common';
 
+export const dynamic = 'force-dynamic';
+
 async function getOrders(): Promise<GetOrdersReturn | null> {
   try {
     const response = await http.get<GetOrdersReturn>('orders');

@@ -17,8 +17,19 @@ import {
 import { http } from '@/lib/api';
 import { DollarSign, ShoppingCart } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
+async function fetchOrders() {
+  try {
+    return http.get<GetOrdersInfoReturn>('orders/info');
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
+
 export default async function Dashboard() {
-  const info = await http.get<GetOrdersInfoReturn>('orders/info');
+  const info = await fetchOrders();
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-muted/40">
@@ -46,7 +57,7 @@ export default async function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl text-center font-bold">
-                {info.totalOrders}
+                {info?.totalOrders || 0}
               </div>
             </CardContent>
           </Card>
@@ -62,7 +73,7 @@ export default async function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl text-center font-bold">
-                ${info.totalRevenue.toFixed(2)}
+                ${info?.totalRevenue?.toFixed(2) || 0}
               </div>
             </CardContent>
           </Card>
@@ -77,7 +88,7 @@ export default async function Dashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {info.recentOrders.length ? (
+            {info && info.recentOrders.length ? (
               <Table>
                 <TableHeader>
                   <TableRow>
