@@ -15,12 +15,12 @@ services:
       - db
 
   backend:
-    build: ./apps/back-end:/app
+    build: ./apps/back-end
     container_name: backend
     ports:
       - "5000:5000"
     volumes:
-      - ./apps/back-end
+      - ./apps/back-end:/app
       - /app/node_modules
     command: pnpm dev
     depends_on:
