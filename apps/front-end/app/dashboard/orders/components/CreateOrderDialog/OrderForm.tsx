@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Form, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { orderFormSchema } from './orderFormSchema';
-import { z } from 'zod';
-import { DialogClose, DialogFooter } from '@/components/ui/dialog';
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Form, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { orderFormSchema } from "./orderFormSchema";
+import { z } from "zod";
+import { DialogClose, DialogFooter } from "@/components/ui/dialog";
+import { useCreateOrders } from "@/app/dashboard/orders/components/use-create-orders";
 
 type LocationFormValues = z.infer<typeof orderFormSchema>;
 
@@ -17,18 +18,28 @@ export function OrderForm() {
     defaultValues: {
       latitude: 0,
       longitude: 0,
-      subTotal: 0,
-    },
+      subTotal: 0
+    }
   });
 
-  const onSubmit = (values: LocationFormValues) => {
-    // TODO: do more
-    console.log('Form submitted:', values);
+  const { createOrder, error } = useCreateOrders();
+
+  const onSubmit = async (values: LocationFormValues) => {
+    try {
+      await createOrder({
+        lat: values.latitude,
+        lon: values.longitude,
+        subtotal: values.subTotal
+      });
+    } finally {
+      form.reset();
+    }
   };
 
   return (
     <>
       <Form {...form}>
+        {error && <div className="text-red-500">{error}</div>}
         <form
           id="orderForm"
           onSubmit={form.handleSubmit(onSubmit)}
