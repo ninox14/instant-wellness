@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./apps/front-end
+      - ./apps/front-end:/app
       - /app/node_modules
     command: pnpm dev
     depends_on:
@@ -15,7 +15,7 @@ services:
       - db
 
   backend:
-    build: ./apps/back-end
+    build: ./apps/back-end:/app
     container_name: backend
     ports:
       - "5000:5000"
