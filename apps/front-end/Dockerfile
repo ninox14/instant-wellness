@@ -4,7 +4,9 @@ FROM node:24
 WORKDIR /app
 
 
-COPY package.json pnpm-lock.yaml ./
+COPY pnpm-lock.yaml ./pnpm-lock.yaml
+COPY apps/front-end/package.json ./package.json
+
 
 
 RUN npm install -g pnpm
