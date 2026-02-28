@@ -17,7 +17,7 @@ This project is a TypeScript-based monorepo that includes both backend and front
   -  Docker Support: The project includes Docker and Docker Compose configurations for running backend, frontend, and database services in isolated containers.
 
 # Project Setup
-
+Follow these steps to set up and run the project locally or inside Docker:
 ## Pre-requisites
 
 - **Docker** – [Install Docker](https://www.docker.com/get-started/)
@@ -34,19 +34,24 @@ cd <repository-folder>
 ```
 
 ### 2. Configure environment variables
-
+You need to provide environment variables for different parts of the project.
 - Fill the following files:
   - `.env` in the root folder
   - `.env` in the front-end folder
   - `.envs` in the back-end folder
-- Use `.env.example` and the comments inside for guidance.
-- You can use arbitrary values for database names, passwords, and other variables.
+- Use the provided `.env.example` files and inline comments as guidance.
+- You can choose arbitrary values for database names, passwords, and other variables, but make sure they are consistent across all files.
 
 ### 3. Start Docker services
 
+Run the following command to start all services in detached mode:
 `docker compose up -d`
+This will spin up the frontend, backend, and database containers.
 
 ### 4. Create the database
+
+If you are running PostgreSQL via Docker, the database may already be created automatically. Just dont forget to run compose file.
+Otherwise, connect to the PostgreSQL container and create a database with the same name you specified in your `.env` files.
 
 - Connect to the PostgreSQL container started in step 3.
 - Create a database with the same name you specified in your `.env` files.
@@ -54,7 +59,7 @@ cd <repository-folder>
 - Format this url according to your credentianls:
   > `postgresql://<username>:<password>@<host>:<port>/<database>`
 
-> If using Docker this step might be unnecessary. Just dont forget to run compose file. For linux you may need docker compose package installed.
+> For linux you may need docker compose package installed.
 
 ### 5. Run the setup script
 
@@ -68,9 +73,13 @@ cd <repository-folder>
 
 ### 6. Start the applications
 
+To run the project in production mode:
+
 `pnpm start`
 
 ### 7. For work in dev mode
+
+For local development, you can use:
 
 - You can use `pnpm dev` inside root folder to spin-up **turborepo**
 - Use tasks from `.vscode/tasks.json`
