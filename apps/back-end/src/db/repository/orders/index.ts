@@ -15,6 +15,10 @@ export class OrderRepository {
       : this.dbService.insert(order).values(data).returning();
   }
 
+  public deleteAllOrders() {
+    return this.dbService.delete(order);
+  }
+
   public async getOrdersInfo() {
     const [[{ totalOrders, totalRevenue }], recentOrders] = await Promise.all([
       this.dbService

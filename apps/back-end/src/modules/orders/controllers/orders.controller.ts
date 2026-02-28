@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Post,
   Query,
@@ -20,8 +21,6 @@ import {
 } from '../dtos/index.js';
 import { ZodResponse } from 'nestjs-zod';
 import { OrderRepository } from '../../../db/repository/index.js';
-import z from 'zod';
-import { GetOrdersInfoResponseSchema } from '@/common';
 
 @Controller('orders')
 export class OrdersController {
@@ -60,5 +59,12 @@ export class OrdersController {
   @ZodResponse({ type: GetOrdersInfoResponseDTO })
   public getORdersInfo() {
     return this.orderRepository.getOrdersInfo();
+  }
+
+  @Delete('all')
+  public async deleteAllOrders() {
+    const { rowCount } = await this.orderRepository.deleteAllOrders();
+
+    return { removed: rowCount };
   }
 }
