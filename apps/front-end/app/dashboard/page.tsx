@@ -1,91 +1,124 @@
-"use client";
-
-import { GetOrdersInfoReturn } from "@/common";
+import { GetOrdersInfoReturn } from '@/common';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
-} from "@/components/ui/card";
-import { http } from "@/lib/api";
-import { DollarSign, ShoppingCart } from "lucide-react";
-import { useEffect, useState } from "react";
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { http } from '@/lib/api';
+import { DollarSign, ShoppingCart } from 'lucide-react';
 
-export default function Dashboard() {
-  const [info, setInfo] = useState<GetOrdersInfoReturn>();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    async function fetchInfo() {
-      setIsLoading(true);
-      const data = await http.get<GetOrdersInfoReturn>("orders/info");
-      setInfo(data);
-      setIsLoading(false);
-    }
-
-    fetchInfo();
-  }, []);
+export default async function Dashboard() {
+  const info = await http.get<GetOrdersInfoReturn>('orders/info');
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center font-sans dark:bg-black">
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <div className="flex min-h-screen p-6 w-full max-w-4xl flex-col items-center bg-white dark:bg-black sm:items-start">
-          <Card className="w-full border-none shadow-none">
-            <CardHeader>
-              <CardTitle className="font-bold text-4xl capitalize">
-                Dashboard overview
+    <div className="flex min-h-screen w-full items-center justify-center bg-muted/40">
+      <div className="w-full max-w-6xl p-6 space-y-8">
+        {/* HEADER */}
+        <div>
+          <h1 className="text-4xl font-bold tracking-tight">
+            Dashboard Overview
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            Welcome to your admin dashboard
+          </p>
+        </div>
+
+        {/* STATS CARDS */}
+        <div className="grid gap-6 md:grid-cols-2 ">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+              <CardTitle className="text-lg font-medium">
+                Total Orders
               </CardTitle>
-              <CardDescription className="text-lg">
-                Welcome to your admin dashboard
-              </CardDescription>
+              <div className="h-9 w-9 rounded-full flex justify-center items-center bg-blue-50">
+                <ShoppingCart className="block h-5 w-5 text-blue-600" />
+              </div>
             </CardHeader>
-            <CardContent className="flex justify-around">
-              <Card className="max-w-48 w-full flex flex-col">
-                <CardHeader className="px-5 flex items-center justify-between">
-                  <CardTitle>Total Orders</CardTitle>
-                  <div className="h-9 w-9 rounded-full flex justify-center items-center bg-blue-50">
-                    <ShoppingCart className="block h-5 w-5 text-blue-600" />
-                  </div>
-                </CardHeader>
-                <CardContent className="font-bold text-xl text-center">
-                  {info?.totalOrders}
-                </CardContent>
-              </Card>
-              <Card className="max-w-48 w-full flex flex-col">
-                <CardHeader className=" px-5 flex items-center justify-between">
-                  <CardTitle>Total revenue</CardTitle>
-                  <div className="h-9 w-9 rounded-full flex justify-center items-center bg-green-50">
-                    <DollarSign className="block h-5 w-5 text-green-600" />
-                  </div>
-                </CardHeader>
-                <CardContent className="font-bold text-xl text-center">
-                  {info?.totalRevenue}$
-                </CardContent>
-              </Card>
+            <CardContent>
+              <div className="text-3xl text-center font-bold">
+                {info.totalOrders}
+              </div>
             </CardContent>
           </Card>
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle className="font-bold text-xl capitalize"></CardTitle>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+              <CardTitle className="text-lg font-medium">
+                Total Revenue
+              </CardTitle>
+              <div className="h-9 w-9 rounded-full flex justify-center items-center bg-green-50">
+                <DollarSign className="block h-5 w-5 text-green-600" />
+              </div>
             </CardHeader>
-            <CardContent className="flex justify-center items-center">
-              <div className="text-gray-500 py-10">
-                {/* STYLE THIS THING */}
-                {info?.recentOrders.length
-                  ? info.recentOrders.map((o) => (
-                      <div key={o.id}>
-                        {o.id} - {o.timestamp}
-                      </div>
-                    ))
-                  : "No orders yet. Create your first order or import from CSV."}
+            <CardContent>
+              <div className="text-3xl text-center font-bold">
+                ${info.totalRevenue.toFixed(2)}
               </div>
             </CardContent>
           </Card>
         </div>
-      )}
+
+        {/* RECENT ORDERS TABLE */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Recent Orders</CardTitle>
+            <CardDescription>
+              Latest created orders in the system
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {info.recentOrders.length ? (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>ID</TableHead>
+                    <TableHead>Subtotal</TableHead>
+                    <TableHead>Tax</TableHead>
+                    <TableHead>Total</TableHead>
+                    <TableHead>Composite Tax %</TableHead>
+                    <TableHead>City</TableHead>
+                    <TableHead>County</TableHead>
+                    <TableHead className="text-right">Created At</TableHead>
+                  </TableRow>
+                </TableHeader>
+
+                <TableBody>
+                  {info.recentOrders.map((order) => (
+                    <TableRow key={order.id}>
+                      <TableCell className="font-medium">#{order.id}</TableCell>
+                      <TableCell>${order.subtotal.toFixed(2)}</TableCell>
+                      <TableCell>${order.taxAmount.toFixed(2)}</TableCell>
+                      <TableCell>${order.totalAmount.toFixed(2)}</TableCell>
+                      <TableCell>
+                        {(order.compositeTax * 100).toFixed(2)}%
+                      </TableCell>
+                      <TableCell>{order.geoInfo.city ?? '—'}</TableCell>
+                      <TableCell>{order.geoInfo.county ?? '—'}</TableCell>
+                      <TableCell className="text-right text-muted-foreground">
+                        {new Date(order.timestamp).toLocaleString()}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <div className="py-12 text-center text-muted-foreground">
+                No orders yet. Create your first order or import from CSV.
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

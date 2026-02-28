@@ -19,8 +19,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-import { Dispatch, SetStateAction, useState } from 'react';
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
