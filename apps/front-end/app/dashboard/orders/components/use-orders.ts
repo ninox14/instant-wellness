@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from 'react';
 import { http, NestError } from '@/lib/api';
 import type { GetOrdersFilters, GetOrdersReturn } from '@/common';
 import { toast } from 'sonner';
-import { usePathname, useRouter } from 'next/navigation';
 
 const ORDERS_URL = 'orders';
 
@@ -17,7 +16,6 @@ export function useOrders({ filters, initialData }: UseOrdersOptions = {}) {
   const [data, setData] = useState<GetOrdersReturn | null>(initialData || null);
   const [error, setError] = useState<NestError | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const pathname = usePathname();
 
   // Store previous filters for deep comparison
   const prevFiltersRef = useRef<string>('');
