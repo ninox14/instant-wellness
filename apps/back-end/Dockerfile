@@ -13,4 +13,6 @@ COPY . .
 
 EXPOSE 5000
 
+RUN pnpm build
+
 CMD ["pnpm", "start"]
