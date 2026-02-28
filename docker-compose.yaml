@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   frontend:
-    build: ./apps/front-end
+    build: 
       context: . 
       dockerfile: ./apps/front-end/Dockerfile
     container_name: frontend
@@ -17,7 +17,7 @@ services:
       - db
 
   backend:
-    build: ./apps/back-end
+    build: 
       context: . 
       dockerfile: ./apps/back-end/Dockerfile
     container_name: backend
