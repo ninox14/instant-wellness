@@ -106,3 +106,5 @@ For local development, you can use:
 # NOTE:
 
 - `packages/common` needs to be build before packages that uses it. Turborepo handles that if you use `build`, `dev` scripts from the root folder. Otherwise build it yourself first and then you can build apps that require this package.
+
+- `apps/back-end/src/data/wip-tax-rates.json` values were based on official New York State tax rates document [link](https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf) 
